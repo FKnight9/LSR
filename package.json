@@ -1,0 +1,11 @@
+{
+  "name": "lsr",
+  "version": "1.0.0",
+  "description": "Assignment 5 for CS 590 by Faris and Joseph",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Faris Ibrahim and Joseph Kuhn",
+  "license": "ISC"
+}
