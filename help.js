@@ -1,5 +1,5 @@
 function readFile() {
-
+    let input = fs.readFileSync(path, 'utf-8');
 }
 
 function originatePacket() {
