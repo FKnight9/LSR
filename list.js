@@ -46,6 +46,18 @@ class List {
         }
         current.next = new Node(ID, cost);
     }
+
+    copy() {
+        let listCopy = new List(this.head.ID, this.name);
+        let p1 = this.head;
+        let p2 = listCopy.head;
+        while(p1.next != null) {
+            p2.next = new Node(p1.next.ID, p1.next.cost);
+            p1 = p1.next;
+            p2 = p2.next;
+        }
+        return p2;
+    }
 }
 
 module.exports = List;
