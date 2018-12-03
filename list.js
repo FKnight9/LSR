@@ -24,7 +24,7 @@ class List {
             }
             current = current.next;
         }
-        return -1;
+        return Infinity;
     }
 
     setCost(ID, cost) {
