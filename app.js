@@ -13,6 +13,7 @@ while (1)
     if (letter == 'C')
     {
         Help.originatePacket(routers);
+        Help.originatePacket(routers);
     }
     else if (letter == 'Q')
     {

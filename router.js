@@ -83,7 +83,7 @@ class Router {
         }
 
         for (let count of this.directLinkCounter) {
-            if (count[1] >= 2) {
+            if (++count[1] >= 2) {
                 this.directLinkList.setCost(count[0], Infinity);
             }
         }
