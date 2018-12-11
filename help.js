@@ -1,4 +1,5 @@
 const Router = require("./router");
+const fs = require("fs");
 
 function readFile(file) {
     let routers = [];
@@ -39,33 +40,33 @@ function originatePacket(routers) {
 }
 
 function startup(routers, input) {
-    console.log("Starting up " + input);
     let array = input.split(' ');
-    let router = findRouterByName(routers, array[1]);
+    console.log("Starting up router with ID of " + array[1]);
+    let router = findRouterByID(routers, array[1]);
     router.resume();
 }
 
 function shutdown(routers, input) {
-    console.log("Shutting down " + input);
     let array = input.split(' ');
-    let router = findRouterByName(routers, array[1]);
+    console.log("Shutting down router with ID of " + array[1]);
+    let router = findRouterByID(routers, array[1]);
     router.shutdown();
 }
 
 function print(routers, input) {
-    console.log("Printing routing table now " + input);
     let array = input.split(' ');
-    let router = findRouterByName(routers, array[1]);
-    router.shutdown();
+    console.log("Printing routing table for the router with an ID of " + array[1]);
+    let router = findRouterByID(routers, array[1]);
+    router.printRoutingTable();
 }
 
-function findRouterByName(router, name) {
+function findRouterByID(routers, ID) {
     for (let router of routers) {
-        if (router.name == name) {
+        if (router.ID == ID) {
             return router;
         }
     }
-    throw "Could not find router with this name";
+    throw "Could not find router with this ID";
 }
 
 module.exports = {

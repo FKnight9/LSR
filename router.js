@@ -5,6 +5,7 @@ class Router {
     constructor(ID, name) {
         this.ID = ID;
         this.name = name;
+        this.state = true;
         this.directLinkList = new List(ID, name);
         this.sequenceRecord = [];
         this.sequenceNum = 1;
@@ -15,7 +16,7 @@ class Router {
 
     addDirectLink(ID, cost) {
         this.directLinkList.add(ID, cost);
-        this.directLinkCounter.push([ID,count]);
+        this.directLinkCounter.push([ID, 0]);
     }
 
     getDirectRouters(routers) {
@@ -106,7 +107,7 @@ class Router {
         for (let router of this.tempTable) {
             let destination_network = this.getNetworkNameByID(router[0]);
             let outgoing_network = this.getNetworkNameByID(router[1]);
-            console.log(destination_network + ",    " + outgoing_network);
+            console.log(destination_network + ", " + outgoing_network);
         }
     }
 
@@ -116,7 +117,7 @@ class Router {
                 return router[1];
             }
         }
-        throw "Error at getting the newtork ID by name";
+        throw "Error at getting the newtork name by ID";
     }
 
     getTableArrByID(routingTable, ID) {
@@ -150,9 +151,9 @@ class Router {
         let start = this.ID;
         let tempRoutingTable = [];
         this.networkNameMap = [[this.directLinkList.head.ID, this.directLinkList.name]];
-        tempRoutingTable.push([this.directLinkList.head.ID, this.directLinkList.ID, this.directLinkList.head.cost]);
+        tempRoutingTable.push([this.directLinkList.head.ID, this.directLinkList.head.ID, this.directLinkList.head.cost]);
         for (let list of this.graph) {
-            this.networkNameMap.push([list.head.id, list.name]);
+            this.networkNameMap.push([list.head.ID, list.name]);
             tempRoutingTable.push([list.head.ID, null, Infinity]);
         }
         let directLinkRouterIDs = this.directLinkList.getIDs();
@@ -168,8 +169,8 @@ class Router {
                 s1.push(tempID);
                 let tempList = this.findListByID(tempID);
                 let cost2 = this.getCostFromTableByID(tempRoutingTable, tempID);
-                let node = tempList.head;
 
+                let node = tempList.head;
                 while (node != null) {
                     let tempTotalCost = cost2 + node.cost;
                     let arr2 = this.getTableArrByID(tempRoutingTable, node.ID);

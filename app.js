@@ -1,11 +1,13 @@
 const Help = require("./help");
+const prompts = require("prompt-sync");
+const prompt = prompts();
 
 let routers = Help.readFile("infile.dat");
 
-
 while (1)
 {
-    let input = prompt("Enter \"C\" to continue, \"Q\" to quit, \"P\" followed by a router ID number to print a routing table, \"S\" followed by a router ID number to shut down a router, or \"T\" followed by a router ID number to start up a router.");
+    console.log("\nEnter:\n \"C\" to continue\n \"Q\" to quit\n \"P\" followed by a router ID number to print a routing table\n \"S\" followed by a router ID number to shut down a router\n \"T\" followed by a router ID number to start up a router.\n");
+    let input = prompt(">>");
     let array = input.trim().replace(/\s+/g, ' ');
     let letter = array[0];
     if (letter == 'C')
