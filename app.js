@@ -1,25 +1,34 @@
-readFile();
-while (True)
+const Help = require("./help");
+
+let routers = Help.readFile("infile.dat");
+
+
+while (1)
 {
-    var letter = prompt("Enter \"C\" to continue, \"Q\" to quit, \"P\" followed by a router ID number to print a routing table, \"S\" followed by a router ID number to shut down a router, or \"T\" followed by a router ID number to start up a router.");
+    let input = prompt("Enter \"C\" to continue, \"Q\" to quit, \"P\" followed by a router ID number to print a routing table, \"S\" followed by a router ID number to shut down a router, or \"T\" followed by a router ID number to start up a router.");
+    let array = input.trim().replace(/\s+/g, ' ');
+    let letter = array[0];
     if (letter == 'C')
     {
-        originatePacket();
+        Help.originatePacket(routers);
     }
     else if (letter == 'Q')
     {
+        console.log("Thank you, have a great day!");
         break;
     }
-    else if (letter.indexOf('P') > -1)
+    else if (letter == 'P')
     {
-        print();
+        Help.print(routers, array);
     }
-    else if (letter.indexOf('S') > -1)
+    else if (letter == 'S')
     {
-        shutdown();
+        Help.shutdown(routers, array);
     }
-    else if (letter.indexOf('T') > -1)
+    else if (letter == 'T')
     {
-        startup();
+        Help.startup(routers, array);
+    } else {
+        console.log("Your input was invalid, please input a correct entry");
     }
 }
